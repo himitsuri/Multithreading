@@ -4,29 +4,31 @@ item = queue.Queue()
 
 def get_from_queue():
     while True:
-        print ('Число : %s\t' % (item.get()))
-def put_to_queue(i):
-    item.put(i)
+        print ('Р§РёСЃР»Рѕ : %s\t' % (item.get()))
+def put_to_queue():
+    for x in range(1000000): item.put(x)
 
+p0 = threading.Thread(target=put_to_queue, name="t0")
 p1 = threading.Thread(target=get_from_queue, name="t1")
 p2 = threading.Thread(target=get_from_queue, name="t2")
 p3 = threading.Thread(target=get_from_queue, name="t3")
 p4 = threading.Thread(target=get_from_queue, name="t4")
 
-#Запуск потоков в качестве демонов
+#Р—Р°РїСѓСЃРє РїРѕС‚РѕРєРѕРІ РІ РєР°С‡РµСЃС‚РІРµ РґРµРјРѕРЅРѕРІ
 #p1.setDaemon(True)
 #p2.setDaemon(True)
 #p3.setDaemon(True)
 #p4.setDaemon(True)
 
+p0.start()
 p1.start()
 p2.start()
 p3.start()
 p4.start()
 
-for x in range(1000000000): put_to_queue(x)
+#for x in range(1000000): put_to_queue(x)
 
-#Ожидание прерывания потоков
+#РћР¶РёРґР°РЅРёРµ РїСЂРµСЂС‹РІР°РЅРёСЏ РїРѕС‚РѕРєРѕРІ
 #p1.join()
 #p2.join()
 #p3.join()
