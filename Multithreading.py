@@ -5,13 +5,9 @@ item = queue.Queue()
 def get_from_queue():
     while True:
         print ('Число : %s\t' % (item.get()))
-<<<<<<< HEAD
+
 def put_to_queue():
     for x in range(1000000): item.put(x)
-=======
-def put_to_queue(i):
-    item.put(i)
->>>>>>> origin/master
 
 p0 = threading.Thread(target=put_to_queue, name="t0")
 p1 = threading.Thread(target=get_from_queue, name="t1")
@@ -30,8 +26,6 @@ p1.start()
 p2.start()
 p3.start()
 p4.start()
-
-#for x in range(1000000): put_to_queue(x)
 
 #Ожидание прерывания потоков
 #p1.join()
